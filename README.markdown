@@ -24,6 +24,10 @@ See also:
 
 Written and tested on the ASUS EEE 1000h netbook + Ubuntu 10.04.
 
+If you experience success (or problems), add your system info to the wiki's [compatibility page][Compatibility].
+
+[Compatibility]: https://github.com/qualiabyte/install-rt2860/wiki/Compatibility
+
 ## Install
 
 The driver can be installed with the following command:
