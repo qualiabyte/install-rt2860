@@ -22,7 +22,7 @@ RALINK_URL="https://github.com/downloads/qualiabyte/install-rt2860/${RALINK_TGZ}
 # Print usage information.
 #
 usage() {
-    cat <<-Usage
+    cat <<-End
 
     install-rt2860.sh
 
@@ -34,7 +34,7 @@ usage() {
         -h, --help      Show this usage info.
         -q, --quick     Quick mode; don't rebuild sources.
 
-Usage
+End
 }
 
 #
