@@ -1,0 +1,30 @@
+diff -ru 2010_07_16_RT2860_Linux_STA_v2.4.0.0/common/cmm_wpa.c 2010_07_16_RT2860_Linux_STA_v2.4.0.0-tweaks/common/cmm_wpa.c
+--- 2010_07_16_RT2860_Linux_STA_v2.4.0.0/common/cmm_wpa.c	2010-07-08 04:40:24.000000000 -0700
++++ 2010_07_16_RT2860_Linux_STA_v2.4.0.0-tweaks/common/cmm_wpa.c	2011-12-28 02:27:03.539482296 -0800
+@@ -2420,8 +2420,8 @@
+ 	UCHAR		PrimaryRsnie;			
+ 	BOOLEAN		bMixCipher = FALSE;	// indicate the pairwise and group cipher are different
+ 	UCHAR		p_offset;		
+-	WPA_MIX_PAIR_CIPHER		FlexibleCipher = MIX_CIPHER_NOTUSE;	// it provide the more flexible cipher combination in WPA-WPA2 and TKIPAES mode
+-		
++	WPA_MIX_PAIR_CIPHER             FlexibleCipher = WPA_TKIPAES_WPA2_TKIPAES;
++	
+ 	rsnielen_cur_p = NULL;
+ 	rsnielen_ex_cur_p = NULL;
+ 
+diff -ru 2010_07_16_RT2860_Linux_STA_v2.4.0.0/os/linux/config.mk 2010_07_16_RT2860_Linux_STA_v2.4.0.0-tweaks/os/linux/config.mk
+--- 2010_07_16_RT2860_Linux_STA_v2.4.0.0/os/linux/config.mk	2010-07-09 01:58:09.000000000 -0700
++++ 2010_07_16_RT2860_Linux_STA_v2.4.0.0-tweaks/os/linux/config.mk	2011-12-28 02:19:04.939509116 -0800
+@@ -8,10 +8,10 @@
+ HAS_XLINK=n
+ 
+ # Support Wpa_Supplicant
+-HAS_WPA_SUPPLICANT=n
++HAS_WPA_SUPPLICANT=y
+ 
+ # Support Native WpaSupplicant for Network Maganger
+-HAS_NATIVE_WPA_SUPPLICANT_SUPPORT=n
++HAS_NATIVE_WPA_SUPPLICANT_SUPPORT=y
+ 
+ #Support Net interface block while Tx-Sw queue full
+ HAS_BLOCK_NET_IF=n
