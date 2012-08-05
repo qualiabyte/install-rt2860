@@ -6,6 +6,9 @@
 # Debug off by default.
 DEBUG=
 
+# Fetch-only off by default.
+FETCH_ONLY=
+
 # Quick off by default.
 QUICK=
 
@@ -30,9 +33,10 @@ usage() {
         sudo install-rt2860.sh
 
     Options:
-        -d, --debug     Show debug info.
-        -h, --help      Show this usage info.
-        -q, --quick     Quick mode; don't rebuild sources.
+        -d, --debug      Show debug info.
+        -f, --fetch-only Just fetch archive; don't build or install.
+        -h, --help       Show this usage info.
+        -q, --quick      Quick mode; don't rebuild sources.
 
 End
 }
@@ -50,10 +54,11 @@ nosudo() {
 getOpts() {
     while [[ "$1" == -* ]]; do
         case "$1" in
-            -d | --debug    ) DEBUG=1; set -x; shift ;;
-            -q | --quick    ) QUICK=1; shift ;;
-            -h | --help     ) usage; exit 0 ;;
-            *               ) shift ;;
+            -d | --debug        ) DEBUG=1; set -x; shift ;;
+            -f | --fetch-only   ) FETCH_ONLY=1; shift ;;
+            -h | --help         ) usage; exit 0 ;;
+            -q | --quick        ) QUICK=1; shift ;;
+            *                   ) shift ;;
         esac 
     done
 }
@@ -64,15 +69,21 @@ getOpts() {
 main() {
     getOpts "$@"
 
+    # Get sources
+    test -f $RALINK_TGZ || \
+        nosudo wget $RALINK_URL
+
+    # Check fetch
+    if test $FETCH_ONLY; then
+        echo "Fetch complete."
+        exit 0
+    fi
+
     # Check user
     if test "$USERNAME" != 'root'; then
         echo "Please run this script with sudo: "
         usage; exit 1
     fi
-
-    # Get sources
-    test -f $RALINK_TGZ || \
-        nosudo wget $RALINK_URL
 
     # Unzip
     test -d $RALINK_SRC || \
