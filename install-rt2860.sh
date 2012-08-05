@@ -45,7 +45,7 @@ End
 # Run commands without elevated permissions.
 #
 nosudo() {
-    sudo -u "$SUDO_USER" "$@"
+    sudo -u "${SUDO_USER:-$USERNAME}" "$@"
 }
 
 #
