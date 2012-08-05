@@ -30,13 +30,40 @@ If you experience success (or problems), add your system info to the wiki's [com
 
 ## Install
 
-The driver can be installed with the following command:
+### Default Install (No network access)
+
+These instructions are intended to help you install the RT2860 driver on a system without reliable network access:
+
+1. Download the [latest release][LatestRelease] archive from a computer with network access.
+2. Copy the archive `install-rt2860-latest.tar.gz` to a USB drive (or other media).
+3. Transfer the archive from USB to the system with the RT2860 hardware.
+4. Extract the archive. In the terminal:
+
+        $ tar xvzf install-rt2860-latest.tar.gz
+
+5. Change into the new directory. For version 0.0.1:
+
+        $ cd install-rt2860-0.0.1
+
+6. Run the install script with sudo. It may take a few minutes to compile:
+
+        $ sudo ./install-rt2860.sh
+
+That's it! The driver should now be installed.
+
+[LatestRelease]: https://github.com/downloads/qualiabyte/install-rt2860/install-rt2860-latest.tar.gz
+
+### Alternative Install (With network access)
+
+The driver can also be installed with the following command:
 
     $ git clone https://github.com/qualiabyte/install-rt2860 \
         && cd install-rt2860 \
         && sudo ./install-rt2860.sh
 
-That's it! The driver should now be installed.
+This will clone the latest version of this repo and run the install script.
+
+The install script will fetch the Ralink sources (if not present), and then patch, compile, and install the driver.
 
 ## Further Usage
 
@@ -50,9 +77,10 @@ The install script has a few options:
             sudo install-rt2860.sh
 
         Options:
-            -d, --debug     Show debug info.
-            -h, --help      Show this usage info.
-            -q, --quick     Quick mode; don't rebuild sources.
+            -d, --debug      Show debug info.
+            -f, --fetch-only Just fetch archive; don't build or install.
+            -h, --help       Show this usage info.
+            -q, --quick      Quick mode; don't rebuild sources.
 
 Note that the script should be run with sudo: `sudo ./install.sh`.
 
