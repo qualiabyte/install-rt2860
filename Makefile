@@ -1,4 +1,4 @@
-VERSION := 0.0.1-alpha
+VERSION := 0.0.1
 DIST := install-rt2860-$(VERSION)
 DIST_FILES := \
 	README.markdown \
