@@ -105,7 +105,8 @@ main() {
     sudo make install
 
     # Unload old driver
-    sudo ifconfig ra0 down
+    ifconfig |grep wlan0 && sudo ifconfig wlan0 down
+    ifconfig |grep ra0   && sudo ifconfig ra0 down
     sudo rmmod rt2860sta
 
     # Backup old driver
