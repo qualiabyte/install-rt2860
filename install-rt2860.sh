@@ -3,6 +3,9 @@
 # install-rt2860.sh
 # Installs the rt2860 driver from source.
 
+# Script version.
+VERSION=0.0.2
+
 # Debug off by default.
 DEBUG=
 
@@ -27,7 +30,7 @@ RALINK_URL="https://github.com/downloads/qualiabyte/install-rt2860/${RALINK_TGZ}
 usage() {
     cat <<-End
 
-    install-rt2860.sh
+    install-rt2860.sh (version $VERSION)
 
     Usage:
         sudo install-rt2860.sh
